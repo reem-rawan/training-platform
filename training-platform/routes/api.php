@@ -13,5 +13,13 @@ Route::get('/graduates/{id}/applications', [ApplicationController::class, 'myApp
 
 Route::get('/graduates/{id}', [GraduateController::class, 'show']);
 use App\Http\Controllers\AuthController;
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
 
 Route::post('/login', [AuthController::class, 'login']);
