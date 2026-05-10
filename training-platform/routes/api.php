@@ -15,3 +15,11 @@ Route::get('/graduates/{id}', [GraduateController::class, 'show']);
 use App\Http\Controllers\AuthController;
 
 Route::post('/login', [AuthController::class, 'login']);
+Route::group(['middleware' => 'cors'], function () {
+    Route::get('/opportunities', [OpportunityController::class, 'index']);
+    Route::get('/opportunities/{id}', [OpportunityController::class, 'show']);
+    Route::post('/applications', [ApplicationController::class, 'store']);
+    Route::get('/graduates/{id}/applications', [ApplicationController::class, 'myApplications']);
+    Route::get('/graduates/{id}', [GraduateController::class, 'show']);
+    Route::post('/login', [AuthController::class, 'login']);
+});
